@@ -51,6 +51,22 @@ int main(int argc, char *argv[]) {
 
     cv::Mat frame, input_resized, display_frame;
 
+    // while(cap.read(frame)) {  // Show unprocessed video
+    //     auto start = std::chrono::high_resolution_clock::now();
+
+    //     float aspect_ratio = (float)frame.cols / frame.rows;
+    //     cv::resize(frame, display_frame, cv::Size(DISPLAY_WIDTH, DISPLAY_WIDTH / aspect_ratio));
+
+    //     // Cálculo de FPS
+    //     auto end = std::chrono::high_resolution_clock::now();
+    //     std::chrono::duration<double> diff = end - start;
+    //     std::string fps = "FPS: " + std::to_string((int)(1.0 / diff.count()));
+    //     cv::putText(display_frame, fps, {20, 40}, cv::FONT_HERSHEY_SIMPLEX, 1, {0, 255, 0}, 2);
+
+    //     cv::imshow("LibTorch CPU Optimized", display_frame);
+    //     if (cv::waitKey(1) == 27) break;
+    // }
+
     while (cap.read(frame)) {
         auto start = std::chrono::high_resolution_clock::now();
 
@@ -93,10 +109,10 @@ int main(int argc, char *argv[]) {
         cv::resize(display_frame, small_orig, cv::Size(pip_w, pip_h));
 
         // Definir ROI y copiar
-        int margin = 15;
+        int margin = 2;
         cv::Rect roi(margin, depth_color.rows - pip_h - margin, pip_w, pip_h);
         small_orig.copyTo(depth_color(roi));
-        cv::rectangle(depth_color, roi, cv::Scalar(255, 255, 255), 2); // Borde estético
+        cv::rectangle(depth_color, roi, cv::Scalar(255, 255, 255), 1); // Borde estético
 
         // Cálculo de FPS
         auto end = std::chrono::high_resolution_clock::now();
