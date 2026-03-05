@@ -2,11 +2,11 @@ Build and run the demo:
 
 ```
 cd cpp_demo
-conan install --build missing -of build [-c tools.files.download:verify=False]
+conan install --build missing [-c tools.files.download:verify=False]
 cmake --preset conan-release
-cd build
-cmake --build .
-./depth_demo --video=../assets/video2.mp4
+cmake --build build/Release
+cd build/release
+./depth_demo [--video=../../assets/video2.mp4] [--model=../../models/MiDaS_small.pt]
 ```
 
 Download the model:

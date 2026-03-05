@@ -7,7 +7,8 @@
 
 int main(int argc, char *argv[]) {
     // --- 1. Arguments ---
-    std::string video_file = "../assets/video1.mp4";
+    std::string video_file = "../../assets/video1.mp4";
+    std::string model_file = "../../models/MiDaS_small.pt";
     std::map<std::string, std::string> arguments;
 
     for (int i = 1; i < argc; ++i) {
@@ -27,13 +28,16 @@ int main(int argc, char *argv[]) {
     if (arguments.count("--video")) {
         video_file = arguments["--video"];
     }
+    if (arguments.count("--model")) {
+        model_file = arguments["--model"];
+    }
 
     // --- 2. Load Model and Device ---
     torch::Device device(torch::kCPU); // Change to kCUDA when available
     torch::jit::script::Module module;
 
     try {
-        module = torch::jit::load("../MiDaS_small.pt");
+        module = torch::jit::load(model_file);
         module.to(device);
         module.eval();
         at::set_num_threads(std::thread::hardware_concurrency());
