@@ -1,0 +1,34 @@
+{
+  "ui": {
+    "meet": "using std::cpp",
+    "videoPath": "",
+    "cameraIndex": 1,
+    "cameraWidth": 1080,
+    "cameraHeight": 960,
+    "registrationQR": "",
+    "auditQR": "images/audit-qr.png"
+  },
+  "recognizer": {
+    "model": "models/quickdraw-MobileNetV2-1.0-finetune28.pt",
+    "labels": "labels.json",
+    "imageMock": "demo-images/dolphin.jpg",
+    "useMockImage": false,
+    "thicken": 4,
+    "pad": 0.25,
+    "debug": false
+  },
+  "game": {
+    "maxHistory": 30,
+    "autoRestartTime": 5,
+    "roundDuration": 300
+  },
+  "captureZone": {
+    "x": 50,
+    "y": 100,
+    "width": 400,
+    "height": 300,
+    "minContentArea": 1000,
+    "stabilityFrames": 5,
+    "recognitionThreshold": 0.5
+  }
+}
